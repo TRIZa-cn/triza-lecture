@@ -1,0 +1,705 @@
+%%
+%% This is file `sample-sigconf.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `all,proceedings,bibtex,sigconf')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-sigconf.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+\documentclass[sigconf]{acmart}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{xcolor}
+% Line-breaking fallback only; class font sizes, margins and spacing are unchanged.
+\setlength{\emergencystretch}{2em}
+\definecolor{trizgreen}{RGB}{0,125,70}
+\definecolor{trizmagenta}{RGB}{160,45,120}
+\definecolor{trizblue}{RGB}{70,110,140}
+\definecolor{triznavy}{RGB}{10,50,75}
+\definecolor{trizrow}{RGB}{240,244,247}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+\setcopyright{none}
+\settopmatter{printacmref=true}
+\copyrightyear{2026}
+\acmYear{2026}
+\acmDOI{}
+\acmISBN{}
+\acmConference[AI4Science]
+{AI4Science}
+{October 23--25, 2026}{Shenzhen, China}
+\acmBooktitle{AI4Science, 2026, Shenzhen, China}
+% DOI, ISBN, and rights settings must follow the organizer's rights confirmation.
+% No unassigned sample values are inserted.
+
+
+\begin{document}
+\newcommand{\triza}{TRIZ$^a$}
+\newcommand{\papertitle}{\triza: Guiding Agent Evolution from Pattern Recognition to Solution Invention}
+\newcommand{\complete}{\textcolor{trizgreen}{\textbf{complete}}}
+\newcommand{\withheld}{\textcolor{trizmagenta}{\textbf{not promoted}}}
+
+\title[TRIZ-Guided Agent Solution Development]{\papertitle}
+
+
+\author{Wenyin Liu}
+\authornote{Corresponding author.}
+\email{liuwy@gdut.edu.cn}
+\affiliation{
+  \institution{Guangdong University of Technology}
+  \city{Guangzhou}
+  \country{China}
+}
+
+\author{Yiheng Huang}
+\email{huangyiheng.bupt@gmail.com}
+\affiliation{
+  \institution{Beijing University of Posts and Telecommunications}
+  \city{Beijing}
+  \country{China}
+}
+
+\author{Kai Wang}
+\email{kaiwen@denglu.net.cn}
+\affiliation{
+  \institution{Beijing Denglu Technology Ltd}
+  \city{Beijing}
+  \country{China}
+}
+
+\renewcommand{\shortauthors}{Liu et al.}
+
+\begin{abstract}
+We propose \triza{} (TRIZ exponentiated by an agent), a workflow that uses the theory of inventive problem solving (TRIZ) to guide search with a large language model (LLM) for new or improved solutions. Evaluation feedback measures the performance of a candidate; TRIZ supplies named transformation directions for pursuing a stated improvement while controlling its associated adverse effect.
+
+The workflow connects technical contradictions to TRIZ principles and expresses selected principles as typed transformation contracts. Each contract specifies the allowed transformation, prohibited changes, and required checks. Functional information (FI) and TRIZ Ideality support candidate selection relative to a fixed reference population, while explicit gates determine whether a candidate can replace the incumbent. Records connect these decisions to the proposed transformation and measured results.
+
+We evaluate the workflow on PowerDuck GOOSE, CICIoT2023, and CIC-DDoS2019. Same-protocol paired comparisons show absolute gains of $2.87$, $4.23$, and $0.15$ percentage points, measured by weighted-F1, macro-F1, and weighted-F1, respectively. A separate 45-activity CICIoT2023 campaign improves three detector measures but does not pass its promotion thresholds. A controller audit and a later candidate sequence illustrate trade-offs and rejected candidates. These cases illustrate how the integrated workflow operates; they do not isolate the performance contribution of each component. The main contribution is an executable strategy for TRIZ-guided solution search, connecting invention principles to candidate transformations, FI-based assessment, promotion requirements, and traceable records.
+\end{abstract}
+
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10010147.10010178.10010219.10010221</concept_id>
+<concept_desc>Computing methodologies~Intelligent agents</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010178.10010187</concept_id>
+<concept_desc>Computing methodologies~Knowledge representation and reasoning</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010257</concept_id>
+<concept_desc>Computing methodologies~Machine learning</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+<concept>
+<concept_id>10002978.10003029.10011703</concept_id>
+<concept_desc>Security and privacy~Intrusion/anomaly detection and malware mitigation</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Intelligent agents}
+\ccsdesc[300]{Computing methodologies~Knowledge representation and reasoning}
+\ccsdesc[300]{Computing methodologies~Machine learning}
+\ccsdesc[300]{Security and privacy~Intrusion/anomaly detection and malware mitigation}
+
+\keywords{TRIZ, AI Agents, AI for Science, Cybersecurity}
+
+
+% Keep the corresponding email's visual mark without changing its metadata value.
+\let\trizaOriginalNoLinkUrl\nolinkurl
+\renewcommand{\nolinkurl}[1]{%
+  \trizaOriginalNoLinkUrl{#1}%
+  \ifstrequal{#1}{liuwy@gdut.edu.cn}{\textsuperscript{*}}{}}
+\maketitle
+\let\nolinkurl\trizaOriginalNoLinkUrl
+
+\section{Introduction}
+\label{sec:introduction}
+
+AI systems can propose and evaluate new algorithms and engineering solutions.
+AlphaFold advanced protein-structure prediction \citep{jumper2021};
+FunSearch and AlphaEvolve coupled language-model proposals to executable
+evaluation \citep{romeraparedes2024,novikov2025}. In such loops, an agent
+generates a candidate, measures its performance, and uses the result to
+propose another.
+
+Our concern is how to direct this search when improving one property
+may worsen another. In cybersecurity, higher attack recall can increase
+benign false positives. A higher F1 score may coincide with leakage,
+excessive resource use, or altered evaluation conditions. Evaluation
+feedback identifies weaknesses, but a scalar score alone does not specify
+which transformation should address the trade-off. The search process
+needs an explicit link from the problem to the proposed operation and
+the conditions for accepting its result.
+
+\triza{} establishes this link using TRIZ, the theory of inventive problem
+solving. TRIZ supplies contradiction-based principles, Ideality, and the
+Ideal Final Result \citep{altshuller1984}. We translate selected principles
+into typed transformation contracts. The LLM supplies implementation
+details; the evaluator measures benefits and harms; and the controller
+applies promotion requirements. Promotion means permission to replace
+the incumbent, the current accepted solution. Functional information (FI)
+and FI-based Ideality support assessment under a fixed reference contract,
+not an unconditional preference for rare candidates.
+
+We make five connected contributions:
+\begin{itemize}
+\item \textbf{TRIZ-guided solution generation.} Identified contradictions
+guide the principles and typed transformations an agent explores for new
+or improved solutions.
+\item \textbf{Operational FI/Ideality.} Useful and harmful FI are expressed
+separately in bits relative to a fixed reference population and protocol.
+\item \textbf{Evidence-bound promotion.} Mandatory requirements distinguish
+metric improvement from permission to replace the incumbent; comparison
+policies retain their own rules.
+\item \textbf{Traceable candidate records.} A schema links contradiction,
+principle, transformation, protocol, measurements, and decision. Released
+examples and ledgers support inspection and decision replay.
+\item \textbf{Layered cybersecurity evidence.} Paired results, a completed
+campaign, a controller audit, and downstream negative results are reported
+within their different evaluation scopes.
+\end{itemize}
+
+\section{Related Work}
+\label{sec:related-work}
+
+\textbf{TRIZ and computational invention.} TRIZ organizes invention around
+contradictions and reusable principles \citep{altshuller1984,mann2004}.
+LLM-based systems automate TRIZ reasoning and coordinate specialized
+agents \citep{jiang2025,szczepanik2025}. Our focus is the declared
+transformation type inside an executable search loop: the principle
+and its permitted operation are recorded before evaluation.
+
+\textbf{LLM-guided program evolution.} FunSearch and AlphaEvolve execute and
+select language-model variants \citep{romeraparedes2024,novikov2025}.
+OmniScientist automates research activities with human--agent collaboration
+\citep{shao2025omniscientist}, while AutoSOTA connects papers and repositories
+to reproduction, repair, ideation, and supervised improvement
+\citep{li2026autosota}. \triza{} concentrates on the link between a stated
+contradiction, a selected transformation class, and the evaluation
+conditions that constrain the resulting candidate.
+
+\textbf{Function-conditioned selection.} FI is the negative logarithm of
+the fraction of configurations achieving a stated level of function
+\citep{hazen2007}. Variation and selection can increase FI
+\citep{wong2023}, but rarity alone does not establish usefulness. Our
+reference population, qualification criteria, and fixed-sample rules are
+declared before comparison. Confidence sequences valid across repeated
+interim analyses remain a possible extension \citep{howard2021}, not a
+method used in these campaigns.
+
+\section{Methodology}
+\label{sec:method}
+
+TRIZ directs candidate generation; the LLM implements a selected operation;
+and evaluation and promotion determine what happens next. The design
+separates transformation choice, measured improvement, and authorization
+to replace an accepted solution.
+
+\subsection{Framework Overview}
+\label{sec:framework}
+
+Figure~\ref{fig:architecture} has four stages in three functional layers.
+Layer 1 states the problem, constraints, and evaluation criteria.
+Layer 2 is the core: principle selection and candidate generation connect
+a contradiction to an executable transformation. Layer 3 controls the
+loop using measured outcomes and acceptance rules.
+
+A human-in-the-loop (HIL) brief specifies the target function and
+non-negotiable constraints. The contradiction extractor identifies the
+improving and potentially worsening properties and their testable
+criteria. An executable protocol fixes the measurements before generation.
+The Authority Provenance Knowledge Bank (AKBank) supplies source-tagged
+mappings and prior outcomes. The agent selects a principle, instantiates
+its contract, and runs the candidate. The controller promotes, requests
+revision, redirects principle search, or stops. High-risk actions require
+explicit authorization from a human operator with the required authority.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/triza_edit_framework.png}
+  \Description{TRIZa's problem formulation, principle selection, solution generation, evaluation, and controller feedback loop.}
+  \caption{System architecture of \triza{}.}
+  \label{fig:architecture}
+\end{figure*}
+
+\subsection{Theory-Guided Transformations}
+\label{sec:ideation}
+
+A failed evaluation can motivate many edits. TRIZ identifies a class of
+operations to attempt before the next candidate is written. For example,
+context-specific behavior is a different direction from changing one
+global threshold when recall must improve without increasing false
+positives. A principle does not uniquely specify an estimator or parameter
+value. The LLM chooses the implementation and the fixed evaluator tests it.
+
+Let $s$ be the parent artifact, $c$ the identified contradiction, $r$ the
+selected principle, and $\kappa$ the frozen protocol. A typed proposal is
+\begin{equation}
+\begin{aligned}
+\pi&=(\mathrm{id}(s),c,r,\tau_r,\Delta,\kappa),\\
+s'&=\tau_r(s;\Delta).
+\end{aligned}
+\label{eq:proposal}
+\end{equation}
+Here $\pi$ records the proposal, $s'$ is the resulting candidate,
+$\tau_r$ is the declared operator, and $\Delta$ supplies its arguments.
+The contract states input/output types, permitted operations, protected
+conditions, and required checks. A favorable result cannot retrospectively
+make an untyped edit TRIZ-guided.
+
+Principle recommendations must identify their source. A matrix hit records
+the matched contradiction pair; a fallback is identified as a fallback.
+If several principles apply, the selection rationale must connect the
+operation to the intended improvement and harm. The declared instance
+and resulting edit are checked before its measured result is interpreted.
+These checks establish the documented scope of a transformation, not
+guaranteed effectiveness. The full procedure is in Supplementary Appendix G.
+
+\paragraph{Selecting an applicable instance.}
+The procedure has four steps:
+\begin{enumerate}
+\item State the useful property to improve, the property that may worsen,
+and the protected data, interfaces, and evaluation settings.
+\item Retrieve principles and their sources. A matrix recommendation
+identifies its matched pair; a fallback recommendation is recorded as such.
+\item State how the operation addresses the intended benefit and harm.
+Specify its inputs, outputs, arguments, and prohibited changes.
+It is applicable only if it can be instantiated within this scope.
+\item Record the principle and concrete arguments before evaluation.
+Generate the edit, check its declared scope, then measure benefits,
+harms, and gate outcomes under the fixed protocol.
+\end{enumerate}
+This procedure does not guarantee a successful transformation. If several
+principles apply, the rationale states why the chosen operation addresses
+the contradiction. A missing rationale cannot be supplied by assigning a
+principle after observing a favorable result.
+
+\begin{table}[t]
+\caption{Representative TRIZ transformation directions.}
+\label{tab:mapping}
+\centering
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.30\linewidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Principle} & \textbf{Allowed transformation class} \\
+\midrule
+Segmentation (1) & Partition components or decisions behind a stable interface. \\
+Local Quality (3) & Assign context-specific behavior under a declared context. \\
+Prior Action (10) & Prepare reusable state before the critical path. \\
+Parameter Change (35) & Adjust a type, threshold, loss, weight, or operating point. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Table~\ref{tab:mapping} gives representative directions. The 40-class map
+is in Supplementary Appendix B; the experiments evaluate selected
+instances, not every principle across all tasks. Failure records retain
+both the attempted operation and the unmet requirement, allowing another
+instance or principle to be tried without changing the evaluator.
+
+\subsection{Functional Information and FI/Ideality}
+\label{sec:fi}
+
+FI is relative to a declared reference population, not a
+population-independent measure of solution quality. At evidence level $l$,
+let $\mathcal{B}_l$ contain $N_l$ configurations evaluated under protocol
+$\kappa$ and the same qualification rules. Write $x\succeq_U s$ if reference
+$x$ matches or exceeds the useful function attained by candidate $s$.
+With equal reference weights,
+\begin{equation}
+I_{U,l}(s)=-\log_2\!\left[
+\frac{1+\sum_{x\in\mathcal{B}_l}\mathbf{1}[x\succeq_U s]}{1+N_l}
+\right].
+\label{eq:usefulfi}
+\end{equation}
+A larger value means fewer included references attain that useful level.
+$N_l$ counts actual configurations, not theoretical combinations of
+principles and parameters. The add-one correction keeps this point
+estimate finite at zero hits; it is not a confidence guarantee.
+
+Harm is evaluated separately. Write $x\succeq_H s$ when $x$ is at least
+as harmful on every included harm measure, such as detector false-positive
+rate (FPR), recall loss, leakage, or a resource violation. Then
+\begin{equation}
+I_{H,l}(s)=-\log_2\!\left[
+\frac{1+\sum_{x\in\mathcal{B}_l}\mathbf{1}[x\succeq_H s]}{1+N_l}
+\right].
+\label{eq:harmfi}
+\end{equation}
+More harm-comparable references give a smaller $I_H$. With multiple measures,
+two candidates can be incomparable; a small hit count need not mean large
+absolute harm on every coordinate. Raw metrics and mandatory gates are
+therefore reported alongside FI.
+
+An evidence level states validation requirements. Certification records
+the highest level actually passed:
+\begin{equation}
+\begin{aligned}
+L_{\mathrm{cert}}(s)=\max\{\,l\mid&s\text{ passes the validation}\\
+&\text{requirements and hard gates at }l\,\}.
+\end{aligned}
+\label{eq:certlevel}
+\end{equation}
+It is $-1$ if no level is certified. Evaluation at a level does not
+automatically award certification at that level.
+
+For same-level diagnosis and tie-breaking, we specify the conservative
+FI-based Ideality ratio
+\begin{equation}
+J_l(s)=
+\frac{I_{U,l}^{\mathrm{LB}}(s)}
+{\max\{\epsilon,I_{H,l}^{\mathrm{UB}}(s)+\lambda_C C_{\mathrm{path}}(s)\}}.
+\label{eq:ideality}
+\end{equation}
+Here $\epsilon>0$, $\lambda_C\geq0$, and $C_{\mathrm{path}}$ is a possible
+path-cost term. If $p_U^{\mathrm{UB}}$ bounds useful-reference probability
+above, $I_U^{\mathrm{LB}}=-\log_2p_U^{\mathrm{UB}}$; a harm-probability
+lower bound gives $I_H^{\mathrm{UB}}=-\log_2p_H^{\mathrm{LB}}$.
+A zero harm lower bound gives an infinite upper FI and zero ratio for a
+finite numerator.
+
+Equation~\ref{eq:ideality} is a method specification. Historical FI V2
+uses harmful-FI point estimates; Campaign08 uses construction steps divided
+by six as a cost proxy, not measured runtime or energy. Those results do
+not validate the full bound-based rule. Supplementary Appendix C gives
+the sampling and fixed-sample confidence assumptions.
+
+All candidates in one comparison share the reference set, weights,
+protocol, and qualification criteria. Changing these fields changes the
+comparison. For a scalar useful metric, FI is monotone in the reference
+hit count and is not automatically a better ranking than the metric.
+With multidimensional harm and the ratio, rankings can depend on reference
+composition. Mandatory integrity, safety, replication, and resource checks
+cannot be compensated by a larger $J_l$. Policies may differ in the
+subsequent score tests, as illustrated in Section~\ref{sec:controller-audit}.
+
+\subsection{Traceability and Evidence State}
+\label{sec:traceability}
+
+The record schema links parent/candidate identities, contradiction,
+principle, operator arguments, edit, protocol fingerprint, metrics, gates,
+and decision. Plans and execution records are distinct. The public
+collection at \url{https://triza.cn/triza-paper-exp-data2026/} supplies
+retained examples and bilingual verification guides, not complete
+originals for every historical candidate.
+
+The design distinguishes static checks and tests, paired evaluation,
+registered replication, and independently locked or external evaluation.
+A rejected candidate remains documented with its failed requirements.
+In the PowerDuck example, the recorded direction prepares standardization
+and class weighting before fitting a fixed linear classifier, replacing
+a scaled linear discriminant analysis (LDA) incumbent. The diagnostic, selection, and execution labels
+are retained at their respective stages; they are not retrofitted into
+one principle. Supplementary Appendix E gives the record and its limits.
+
+Table~\ref{tab:powerduck-trace} records the PowerDuck instance. Preparing
+standardization and class weighting before fitting is the recorded Prior
+Action direction. The resulting estimator is one instance, not uniquely
+specified by the principle. The source records report no matrix hit.
+Local Quality appears in diagnosis, Feedback and Prior Action in
+implementation selection, and Prior Action in the executed ledger.
+Their roles are not merged retrospectively.
+
+\begin{table*}[t]
+\caption{Recorded PowerDuck path from contradiction to executed transformation.}
+\label{tab:powerduck-trace}
+\centering
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Step} & \textbf{Content supported by the released record} \\
+\midrule
+Problem & Improve weighted-F1 while limiting generalization risk under the fixed split, embeddings, and evaluation procedure. \\
+Recommendation & The historical context reports no matrix hit. Local Quality is recorded at diagnosis; Feedback and Prior Action at implementation selection; Prior Action in the executed ledger row. \\
+Instance and rationale & Train-only standardization and class weighting precede fitting a fixed LinearSVC candidate. The recorded hypothesis is that this simple linear estimator can correct residual errors left by the scaled LDA incumbent. \\
+Protected conditions & Do not change the evaluator, data split, final-test data, metric implementation, or frozen embeddings; do not expand the fixed candidate into a parameter grid after viewing results. \\
+Checks and decision & The ledger notes pipeline and argument checks, a fit/predict smoke check, seven passing unit tests, and the promotion outcome. The published package does not contain the underlying test logs. \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\section{Experiments}
+\label{sec:experiments}
+
+The four evidence groups answer different questions. Table~\ref{tab:evidence}
+separates paired detector results, fixed-candidate evaluation, controller
+qualification agreement, and downstream behavior. Completion of an
+evaluation does not by itself mean permission to promote.
+
+\begin{table*}[t]
+\caption{Evidence ladder. Results with different decision boundaries are not merged. ``Complete'' refers to completion of the stated evaluation, not permission to promote. Gains are calculated before rounding.}
+\label{tab:evidence}
+\centering
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash\bfseries}p{1.00in}>{\raggedright\arraybackslash}p{1.30in}>{\raggedright\arraybackslash}p{1.48in}>{\raggedright\arraybackslash}X}
+\toprule
+\rowcolor{trizblue!15}
+\textcolor{triznavy}{Task / layer} & \textcolor{triznavy}{Comparison} & \textcolor{triznavy}{Observed evidence} & \textcolor{triznavy}{Status and boundary} \\
+\midrule
+PowerDuck legacy & Paired weighted-F1 & $0.96943\rightarrow0.99817$ ($+2.87$ pp) & \complete; no principle-level attribution \\
+\rowcolor{trizrow}
+CICIoT legacy & Paired macro-F1 & $0.83256\rightarrow0.87490$ ($+4.23$ pp) & reported incumbent; distinct from the formal V2 decision \\
+CIC-DDoS legacy & Paired weighted-F1 & $0.74704\rightarrow0.74851$ ($+0.15$ pp) & \complete; final ten-fold evaluation \\
+\rowcolor{trizrow}
+CICIoT formal V2 & 45-activity campaign & macro-F1 $0.83256\rightarrow0.84839$ ($+0.01584$); recall $+0.01802$; FPR $-0.00168$ & complete evidence; \withheld \\
+Campaign08 audit & 2,040 controller decisions & balanced policy: qualification F1 $0.811$, specificity $0.989$ & descriptive nested aggregate \\
+\rowcolor{trizrow}
+V17/V18 downstream & Multi-metric sequence & V17 passes a separate champion rule; V18 rejected & neither establishes strict V2 acceptance \\
+\bottomrule
+\end{tabularx}
+\par
+PowerDuck's $+2.87$ pp compares the candidate with the paired baseline.
+Its recorded promotion compares it with the prior incumbent ($0.99600$),
+over which it gains $+0.22$ pp.
+\end{table*}
+
+\subsection{Tasks and Paired Evaluation}
+\label{sec:experimental-setup}
+
+PowerDuck GOOSE is scored by weighted-F1 over 15 classes
+\citep{zemanek2022}. CICIoT2023 runs are binary benign-versus-attack
+evaluations; macro-F1, recall, and FPR are averaged equally over the
+evaluated families and seeds \citep{neto2023}. CIC-DDoS2019 reports
+weighted-F1 over all ten registered folds \citep{sharafaldin2019}.
+These primary metrics follow the retained task protocols. Macro-F1 gives
+labels equal weight, whereas weighted-F1 uses their test-sample support.
+Their gain sizes are not used to rank performance across tasks.
+
+Comparisons use matched recorded settings; some reuse baseline caches
+rather than refitting both models in one activity. A protocol fingerprint
+identifies its serialized configuration, not every prediction or
+unspecified library default. Formal CICIoT, V17, and V18 share the
+two-million-row parent protocol: nine held-out families and seeds 42--46,
+with 1.7 million fitting and 0.3 million validation rows per run. The
+held-out family is excluded from both. Campaign08 instead uses a
+60,000-row budget and different seeds. Detailed contracts and comparison
+scopes are in Supplementary Appendices C and H.
+
+Detector FPR is the fraction of benign traffic marked as attack.
+Controller specificity is the rejection rate for functionally unqualified
+candidates. They refer to different decisions.
+
+\subsection{Legacy Paired Results}
+\label{sec:legacy}
+
+Figure~\ref{fig:results}A displays the three legacy pairs and the separate
+formal pair. PowerDuck's near-ceiling gain is not proof of deployment
+performance. Its paired reference is a class-balanced radial-basis-function
+support vector classifier (RBF-SVC), while its pre-promotion incumbent is
+StandardScaler plus LDA. Table~\ref{tab:powerduck-comparators} distinguishes
+both from the fixed StandardScaler plus LinearSVC candidate. The incumbent
+ledger records cached evaluation; all three models were not necessarily
+refitted in that activity.
+
+\begin{table}[t]
+\caption{PowerDuck weighted-F1 and distinct comparison references.}
+\label{tab:powerduck-comparators}
+\centering
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.30\linewidth}>{\centering\arraybackslash}p{0.15\linewidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Object} & \textbf{F1} & \textbf{Role in interpreting the result} \\
+\midrule
+Balanced RBF-SVC paired baseline & $0.96943$ & Paired performance reference: $+2.87$ pp. \\
+Scaled LDA incumbent & $0.99600$ & Pre-promotion reference: $+0.22$ pp. \\
+StandardScaler + LinearSVC candidate & $0.99817$ & One candidate; two distinct comparison references. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The legacy CICIoT endpoint equals the retained V14 checkpoint aggregate,
+but the legacy report lacks a complete run-level identity chain.
+It is not counted as an additional independent V14 replication or as the
+formal V2 promotion result. The retained V14 snapshot also has a recall
+trade-off (Table~\ref{tab:downstream}); that snapshot does not supply
+missing legacy run identities. CIC-DDoS covers the full registered
+ten-fold scope despite its smaller F1 gain. None of these pairs isolates
+a TRIZ principle's causal effect.
+
+\subsection{Formal V2 and Campaign08}
+\label{sec:controller-audit}
+
+\paragraph{Full-budget fixed candidate.}
+The formal campaign completed 45 family--seed pairs. Within the FI/Ideality
+evaluation workflow, the fixed balanced-logloss random forest (RF) candidate was chosen
+by the highest already-observed Campaign08 full-family qualification
+macro-F1, not uniquely by the strict balanced gate. Macro-F1 rises from
+$0.83256$ to $0.84839$; the unrounded difference is $0.01583770699$
+($+0.01584$, or $1.90\%$ relative). Recall rises by $0.01802$ and FPR
+falls by $0.00168$. There are 43 positive pair differences and positive
+mean changes in all five seed blocks.
+
+The candidate is not promoted: relative F1 gain is below $3.2277\%$ and
+FPR reduction below $0.005$. Displayed endpoints are rounded to five
+decimals; deltas are calculated before rounding. At higher precision,
+the endpoints are $0.83255586481$ and $0.84839357180$.
+
+\paragraph{Controller qualification audit.}
+Campaign08 forms 510 overlapping proper subsets of nine held-out-family
+evaluations, each with four candidates, yielding 2,040 decisions. The
+reference set is RF100 plus those four candidates with equal proposal
+weights. Evidence uses seeds 68/69; qualification uses means over
+70/71 within the same corpus and family scope.
+
+A qualification positive requires macro-F1 $\geq0.65$, recall $\geq0.70$,
+FPR $\leq0.10$, relative F1 gain $\geq1.5\%$, no recall loss, an FPR
+reduction $\geq0.005$, and the recorded integrity gates. The two V2
+policies instead certify each evidence seed separately.
+These are program-defined contract labels, not an external gold standard.
+There are 1,383 qualification positives and 657 negatives.
+The separate winner label additionally requires the candidate's winner
+identity and has 390 positives. It is neither this audit's metric target
+nor deployment authorization; Supplementary Appendix D gives the rule.
+
+\begin{table}[t]
+\caption{Campaign08 agreement with functional-qualification labels.}
+\label{tab:ciciot-evidence}
+\centering
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X
+>{\centering\arraybackslash}p{0.13\linewidth}
+>{\centering\arraybackslash}p{0.16\linewidth}
+>{\centering\arraybackslash}p{0.22\linewidth}}
+\toprule
+\textbf{Policy} & \textbf{F1} & \textbf{Recall} & \textbf{Specificity} \\
+\midrule
+Original V1 (5\%) & 0.508 & 0.346 & 0.963 \\
+Safety-first V2 & 0.409 & 0.257 & 0.998 \\
+Balanced V2 & 0.811 & 0.686 & 0.989 \\
+Calibrated V1 & 0.955 & 0.965 & 0.883 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Safety-first V2 increases rejection specificity but misses more qualified
+candidates. Balanced V2 improves qualification F1 relative to fixed 5\% V1,
+with seven false acceptances, but calibrated V1 has higher F1 and lower
+specificity (Table~\ref{tab:ciciot-evidence}, Figure~\ref{fig:results}B).
+The result is a policy trade-off, not uniform superiority.
+Balanced V2 retains certification, identity checks, positive conservative
+useful FI, and a gain threshold; it removes direct Ideality ranking as a
+veto. Calibrated V1 has no additional hard-gate check in its threshold branch.
+
+The calibrated thresholds were developed on Campaign04 seeds 48/49
+(evidence) and 50/51 (qualification), then assessed on new Campaign08 seeds.
+Shared corpus and overlapping subsets preclude treating 2,040 decisions
+as independent replications. Local creation records are not third-party
+preregistration; the common generator's original-time commit is unverified.
+Replay of retained measurements matches all 2,040 decisions and four
+confusion matrices. Four retained Campaign08 input/output originals match
+their recorded digests; redacted public copies carry separate hashes.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.98\linewidth]{figures/triza_results_metric_acm.pdf}
+  \Description{Paired F1 comparisons for four task records and controller qualification F1 versus specificity for four policies.}
+  \caption{Two evaluation levels. (A) Paired detector F1 outcomes: W is weighted-F1, M is macro-F1, and $\dagger$ marks the formal V2 candidate not promoted. CIC-DDoS includes all ten registered folds. Each pair is interpreted within its own protocol. (B) Controller agreement with functional-qualification labels, not winner labels. The 2,040 decisions reuse 510 overlapping family subsets; they are not independent runs. Calibrated V1 is a secondary comparison.}
+  \label{fig:results}
+\end{figure*}
+
+\subsection{Downstream Evidence}
+\label{sec:downstream}
+
+V17 improves F1, Matthews correlation coefficient (MCC), and recall over
+V14 but increases detector FPR. It passes a separate champion rule, not
+strict balanced V2 qualification. Selection used 28 observed pairs before
+the remaining 17 were completed. Recall remains $2.43$ percentage points
+below RF100. Table~\ref{tab:downstream} preserves the historical snapshots.
+
+V18 is rejected under its retained contract. Its MCC is higher than the
+same-fit V17 core but lower than the older cached V17. The same-fit
+comparison isolates the added mechanism on one fitted model: F1 decreases,
+MCC and recall increase, and FPR increases. Rounded snapshot ordering is
+not the rejection rule. Supplementary Appendix D/H provides the exact
+differences and comparison details.
+
+\begin{table*}[t]
+\caption{Historical downstream snapshots shown in Figure~\ref{fig:downstream}, rounded directly from full precision to five decimals. The older V17 cache is not the same-fit core used to test the V18 mechanism.}
+\label{tab:downstream}
+\centering
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.17\linewidth}>{\centering\arraybackslash}p{0.17\linewidth}>{\centering\arraybackslash}p{0.11\linewidth}>{\centering\arraybackslash}p{0.23\linewidth}>{\centering\arraybackslash}X}
+\toprule
+\textbf{Model} & \textbf{Macro-F1} & \textbf{MCC} & \textbf{Detector FPR} & \textbf{Attack recall} \\
+\midrule
+V1/RF100 & 0.83256 & 0.71532 & 0.05040 & 0.90528 \\
+V14 & 0.87490 & 0.77467 & 0.02285 & 0.87792 \\
+V17 & 0.87530 & 0.77558 & 0.02319 & 0.88095 \\
+V18 & 0.87526 & 0.77553 & 0.02324 & 0.88113 \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.74\linewidth]{figures/ciciot_v14_v18_summary.pdf}
+  \Description{Macro-F1, MCC, detector FPR, and attack recall for V1, V14, V17, and V18, displayed separately.}
+  \caption{Downstream CICIoT2023 snapshots. Relative to V1/RF100, V17 changes macro-F1 by $+5.13\%$, MCC by $+8.42\%$, and detector FPR by $-54.0\%$, while attack recall remains $2.43$ pp below baseline. V17 passes its separate champion rule but fails strict V2 qualification. V18 is rejected. The plotted comparison with the older V17 cache is descriptive; V18's MCC is higher than that of the same-fit V17 core but lower than that of the older cached V17. This path is separate from formal V2 selection.}
+  \label{fig:downstream}
+\end{figure*}
+
+\subsection{Evidence Scope and Reproducibility}
+\label{sec:evidence-scope}
+\label{sec:reproducibility-main}
+
+The case studies show an executable search and decision workflow, not
+isolated performance effects of TRIZ, FI/Ideality, or the controller.
+Matched-budget independent searches and reference-population sensitivity
+tests remain future work. Reused caches and related candidates are not
+independent confirmations.
+
+The online supplement provides retained contracts, code, measurements,
+decision ledgers, and a no-training replay. Its English--Chinese guides
+explain comparisons, labels, and original/public hashes. Missing
+sample-level predictions, one PowerDuck specification original, and
+incomplete historical provenance still limit independent reproduction.
+The main paper ends at the references; supplementary appendices are
+available separately at \url{https://triza.cn/triza-paper-exp-data2026/}.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+\triza{} makes TRIZ guidance executable in an agent loop. Contradictions
+direct the transformations to explore, typed contracts specify permitted
+operations and checks, FI/Ideality supports assessment under a fixed
+reference contract, and mandatory requirements control replacement of the
+incumbent. A record schema connects these steps to outcomes and decisions.
+The cybersecurity evidence shows paired gains, an improved candidate not
+promoted, policy trade-offs, and a rejected downstream variant. These
+cases illustrate how the strategy operates without proving component-level
+causal effects or ranking stability across reference populations.
+Released records and a separate supplementary appendix support inspection
+of documented transformations and replay of retained decisions.
+
+\noindent\textbf{AI system disclosure.} The human authors originated the goal of using AI to operationalize TRIZ for invention and provided the evolving research directions. Human-initiated
+extensions included FI-based formulation of Ideality, design of the loop controller, and mechanisms for tracing candidate transformations and decisions. AI coding agents implemented the system, ran computational experiments, produced figures, and drafted the manuscript. The human authors reviewed the outputs, extensively revised the manuscript and take responsibility for its final content.
+
+
+\clearpage
+\balance
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{triaz_refs}
+
+
+\end{document}
+\endinput

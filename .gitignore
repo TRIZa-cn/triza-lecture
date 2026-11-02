@@ -89,3 +89,5 @@ desktop.ini
 .idea/
 __pycache__/
 *.pyc
+# ---------- Office 锁文件 ----------
+~\$*

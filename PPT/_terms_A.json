@@ -1,0 +1,166 @@
+{
+ "terms": [
+  {
+   "name": "技术矛盾",
+   "lv": 2,
+   "explained": true,
+   "where": "第1页操作性定义：改善A恶化B"
+  },
+  {
+   "name": "物理矛盾",
+   "lv": 2,
+   "explained": true,
+   "where": "第1页：同一参数既要A又要非A"
+  },
+  {
+   "name": "管理矛盾",
+   "lv": 2,
+   "explained": true,
+   "where": "第4页表格：两个部门目标冲突+转成技术矛盾"
+  },
+  {
+   "name": "矛盾矩阵",
+   "lv": 2,
+   "explained": true,
+   "where": "第6页四步法说清输入输出"
+  },
+  {
+   "name": "分离原理",
+   "lv": 2,
+   "explained": true,
+   "where": "第8页：让两个要求在不同条件下各自成立"
+  },
+  {
+   "name": "条件分离",
+   "lv": 2,
+   "explained": true,
+   "where": "第8页表格：满足条件才切换"
+  },
+  {
+   "name": "空间分离",
+   "lv": 2,
+   "explained": true,
+   "where": "第8页表格：不同位置不同性质"
+  },
+  {
+   "name": "时间分离",
+   "lv": 2,
+   "explained": true,
+   "where": "第8页表格：需要时才出现"
+  },
+  {
+   "name": "尺度分离",
+   "lv": 2,
+   "explained": true,
+   "where": "第8页表格：宏观微观各司其职"
+  },
+  {
+   "name": "五问法",
+   "lv": 2,
+   "explained": true,
+   "aliases": [
+    "五问法",
+    "追问五次",
+    "连续追问"
+   ],
+   "where": "第5页：追问五次为什么必须二选一"
+  },
+  {
+   "name": "发明等级",
+   "lv": 2,
+   "explained": true,
+   "aliases": [
+    "发明等级",
+    "创新等级",
+    "等级"
+   ],
+   "where": "第10页表格给五级特征与占比"
+  },
+  {
+   "name": "整体油箱",
+   "lv": 2,
+   "explained": true,
+   "where": "第5页：机翼内部成为油箱本身，外形不变容积变大"
+  },
+  {
+   "name": "热管",
+   "lv": 2,
+   "explained": true,
+   "where": "第7页：把热从CPU搬到边缘再吹走"
+  },
+  {
+   "name": "召回率",
+   "lv": 2,
+   "explained": true,
+   "aliases": [
+    "召回率",
+    "召回"
+   ],
+   "where": "第2页白话：把攻击抓全"
+  },
+  {
+   "name": "误报率",
+   "lv": 2,
+   "explained": true,
+   "where": "第2页白话：几乎不许误报"
+  },
+  {
+   "name": "阈值",
+   "lv": 2,
+   "explained": true,
+   "where": "第9页：同一个阈值既要低（抓全）又要高（不冤枉），给出可操作含义"
+  },
+  {
+   "name": "通用工程参数",
+   "lv": 2,
+   "explained": true,
+   "aliases": [
+    "工程参数",
+    "通用工程参数"
+   ],
+   "where": "第6页：参数就是可测量的量（重量/温度/速度/功耗/噪声）"
+  },
+  {
+   "name": "鳍片",
+   "lv": 2,
+   "explained": true,
+   "where": "第7页讲稿：鳍片就是散热片，多片薄金属"
+  },
+  {
+   "name": "风道",
+   "lv": 2,
+   "explained": false,
+   "where": "第4页表格只出现名词"
+  },
+  {
+   "name": "抽取",
+   "lv": 2,
+   "explained": true,
+   "where": "第7页：抽取＝把起作用的部件单独拿走"
+  },
+  {
+   "name": "分割",
+   "lv": 2,
+   "explained": true,
+   "where": "第7页：分割＝拆成互不影响的块"
+  },
+  {
+   "name": "动态化",
+   "lv": 2,
+   "explained": true,
+   "where": "第7页：动态化＝让部件能变能适应"
+  },
+  {
+   "name": "中介物",
+   "lv": 2,
+   "explained": true,
+   "where": "第7页：中介物＝中间加个传递载体"
+  },
+  {
+   "name": "置信度",
+   "lv": 2,
+   "explained": false,
+   "where": "第9页只出现名词"
+  }
+ ]
+}

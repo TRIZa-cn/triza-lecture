@@ -1,0 +1,168 @@
+{
+ "A": {
+  "deck": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\TRIZ_W2A_矛盾解剖_15min.pptx",
+  "voice": "zh-CN-YunyangNeural",
+  "rate": "-25%",
+  "rows": [
+   {
+    "slide": 1,
+    "chars": 108,
+    "dur": 27.48,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s01.mp3"
+   },
+   {
+    "slide": 2,
+    "chars": 223,
+    "dur": 55.82,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s02.mp3"
+   },
+   {
+    "slide": 3,
+    "chars": 192,
+    "dur": 48.19,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s03.mp3"
+   },
+   {
+    "slide": 4,
+    "chars": 162,
+    "dur": 40.99,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s04.mp3"
+   },
+   {
+    "slide": 5,
+    "chars": 198,
+    "dur": 50.59,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s05.mp3"
+   },
+   {
+    "slide": 6,
+    "chars": 202,
+    "dur": 50.02,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s06.mp3"
+   },
+   {
+    "slide": 7,
+    "chars": 211,
+    "dur": 55.94,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s07.mp3"
+   },
+   {
+    "slide": 8,
+    "chars": 219,
+    "dur": 57.17,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s08.mp3"
+   },
+   {
+    "slide": 9,
+    "chars": 260,
+    "dur": 62.83,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s09.mp3"
+   },
+   {
+    "slide": 10,
+    "chars": 220,
+    "dur": 56.76,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s10.mp3"
+   },
+   {
+    "slide": 11,
+    "chars": 186,
+    "dur": 47.57,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s11.mp3"
+   },
+   {
+    "slide": 12,
+    "chars": 194,
+    "dur": 49.46,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\A\\s12.mp3"
+   }
+  ],
+  "total": 602.8
+ },
+ "B": {
+  "deck": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\TRIZ_W2B_盒子与矛盾论_15min.pptx",
+  "voice": "zh-CN-YunyangNeural",
+  "rate": "-25%",
+  "rows": [
+   {
+    "slide": 1,
+    "chars": 119,
+    "dur": 29.78,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s01.mp3"
+   },
+   {
+    "slide": 2,
+    "chars": 178,
+    "dur": 43.54,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s02.mp3"
+   },
+   {
+    "slide": 3,
+    "chars": 234,
+    "dur": 58.27,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s03.mp3"
+   },
+   {
+    "slide": 4,
+    "chars": 203,
+    "dur": 53.4,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s04.mp3"
+   },
+   {
+    "slide": 5,
+    "chars": 212,
+    "dur": 53.71,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s05.mp3"
+   },
+   {
+    "slide": 6,
+    "chars": 253,
+    "dur": 65.09,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s06.mp3"
+   },
+   {
+    "slide": 7,
+    "chars": 212,
+    "dur": 53.5,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s07.mp3"
+   },
+   {
+    "slide": 8,
+    "chars": 261,
+    "dur": 67.03,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s08.mp3"
+   },
+   {
+    "slide": 9,
+    "chars": 186,
+    "dur": 45.67,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s09.mp3"
+   },
+   {
+    "slide": 10,
+    "chars": 203,
+    "dur": 54.72,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s10.mp3"
+   },
+   {
+    "slide": 11,
+    "chars": 213,
+    "dur": 55.61,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s11.mp3"
+   },
+   {
+    "slide": 12,
+    "chars": 242,
+    "dur": 60.7,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s12.mp3"
+   },
+   {
+    "slide": 13,
+    "chars": 233,
+    "dur": 59.3,
+    "file": "D:\\doc\\ZGCA\\Lectures\\TRIZ\\PPT\\narration\\B\\s13.mp3"
+   }
+  ],
+  "total": 700.3
+ }
+}

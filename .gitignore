@@ -1,0 +1,91 @@
+# ============================================================
+#  TRIZ 讲义仓 · 忽略规则
+#  原则：文本与可重建的小成品入库；音频、视频、压缩包、
+#        PDF、抓取网页与一切 >2MB 二进制一律不入库。
+# ============================================================
+
+# ---------- 媒体 ----------
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.aac
+*.ogg
+*.mp4
+*.mov
+*.mkv
+*.webm
+
+# ---------- 归档与文档大件 ----------
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+*.pdf
+*.epub
+*.mobi
+
+# ---------- 图片与网页抓取 ----------
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.mermaid
+*.html
+*.css
+*.js
+*_files/
+*.下载
+
+# ---------- 录音与训练资产（保留在磁盘，不入库） ----------
+/LWY录音/
+/TRIZa-声音训练交接包/
+/PPT/LWY录音/
+/PPT/LWY声音模型训练交接包_32k_未切片/
+/PPT/TRIZa_声音模型与试讲_*.zip
+/PPT/TRIZa_15min_handoff/
+/PPT/TRIZa_AI4Science_15min_v2_Andrew_8pct*.wav
+
+# ---------- TTS 中间产物 ----------
+/PPT/_edge/
+/PPT/_edge_v2/
+/PPT/_fos/
+/PPT/_kang/
+/PPT/_kang2/
+/PPT/_male/
+/PPT/_raw/
+/PPT/_voices/
+/PPT/narration/
+/PPT/narration_opt/
+
+# ---------- 播报日志与临时转储 ----------
+/PPT/_*.log
+/PPT/_*_dump.txt
+/PPT/_dump*.json
+/PPT/_syl_after.txt
+/PPT/_syllabus_now.txt
+/PPT/_notes_check.txt
+/PPT/_ref.txt
+/PPT/_deck15.txt
+
+# ---------- 备份（git 已承担版本职责） ----------
+*_备份-*.pptx
+*.bak
+*.bak-*
+/PPT/*.bak-*
+
+# ---------- 超大成品（>2MB，改由 release 附件分发） ----------
+/PPT/TRIZ_W1_矛盾15m_演播版.pptx
+/PPT/TRIZa_AI4Science_15min_v2.pptx
+/PPT/TRIZa_AI4Science_15min.pptx
+
+# ---------- 系统与编辑器 ----------
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+__pycache__/
+*.pyc

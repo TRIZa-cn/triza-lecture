@@ -17,6 +17,8 @@ for f in files:
     n = int(re.search(r"\u7b2c(\d+)\u6b21", f.name).group(1))
     for i, sl in enumerate(prs.slides, 1):
         for sh in sl.shapes:
+            if sh.name.startswith('fig-'):
+                continue
             if not sh.has_text_frame:
                 continue
             txt = sh.text_frame.text.strip()

@@ -13,6 +13,7 @@ from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.enum.shapes import MSO_SHAPE
+from w_fig import draw_fig, caption
 from pptx.oxml.ns import nsdecls, qn
 from pptx.oxml import parse_xml
 
@@ -313,7 +314,7 @@ def build_session(sess):
     tb = sess["table"]
     s = page(prs, "04  ·  一张表", tb["title"], acc, nt.get("table", ""))
     table(s, tb["rows"], 2.12, tb["col_w"], SZ_BODY_S, row_h=tb.get("row_h", 0.78),
-          head_h=0.52, accent=acc)
+          head_h=tb.get("head_h", 0.52), accent=acc)
     band(s, tb["band"], tb.get("band_top", 5.90), acc, SZ_BODY_S, 0.60)
     foot(s, i, n, acc)
 
@@ -332,7 +333,11 @@ def build_session(sess):
     tf = textbox(s, ML, 2.10, 6.1, 4.05)
     for k, t in enumerate(e2["left"]):
         bullet(tf, t, SZ_BODY_S, INK, acc, first=(k == 0), space_after=15)
-    box(s, 7.2, 2.10, 5.15, 4.10, e2["box_title"], e2["box"], acc, SZ_BODY_S, line=1.16, gap=5)
+    if e2.get("fig"):
+        draw_fig(s, e2["fig"], 7.15, 2.02, 5.20, 3.52, acc)
+        caption(s, 7.18, 5.62, 5.20, 0.62, e2["fig"]["cap"], SZ_BODY_S, acc)
+    else:
+        box(s, 7.2, 2.10, 5.15, 4.10, e2["box_title"], e2["box"], acc, SZ_BODY_S, line=1.16, gap=5)
     foot(s, i, n, acc)
 
     i = nxt()

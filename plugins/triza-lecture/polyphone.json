@@ -1,0 +1,63 @@
+{
+  "deck": "第02讲人工改写notes_功能分析换了三次缺的是那根线_演播版_修订版.pptx",
+  "note": "全稿「调」共 6 处出现（4 个不同句子），全部读 tiáo。其中 P12 那处只在上屏文字里、notes 里没有这句话，因此不进配音、无需替换。",
+  "field_help": {
+    "speech": "true = 会影响配音，合成前必须替换；false = 只在上屏文字里，读的人自己会念对，不处理",
+    "tier": "1=加字成词（改讲稿文字） 2=同音替换（只改合成文本） 3=改写句子",
+    "appears": "这一处在哪儿出现：page / notes"
+  },
+  "entries": [
+    {
+      "id": "w2-p3-tiaodi",
+      "tier": 2,
+      "speech": true,
+      "page": 3,
+      "appears": ["page", "notes"],
+      "before": "把判定阈值调低",
+      "after": "把判定阈值条低",
+      "pinyin": "tiao2",
+      "why": "「调低」= 往下调节，调读 tiáo，不是 diào（调动）。加「整」不成立（『调整低』不是词），所以走同音替换：页面文字不动，只在合成文本里替。"
+    },
+    {
+      "id": "w2-p4-tiaoyici",
+      "tier": 1,
+      "speech": true,
+      "page": 4,
+      "appears": ["page", "notes"],
+      "before": "调一次规则",
+      "after": "调整一次规则",
+      "pinyin": "tiao2",
+      "why": "动宾结构，加「整」成高频词，TTS 稳定读 tiáo。比同音替换自然，代价是多一个字。"
+    },
+    {
+      "id": "w2-p4-tiaohuiqi",
+      "tier": 1,
+      "speech": true,
+      "page": 4,
+      "appears": ["notes"],
+      "before": "再调回去",
+      "after": "再调整回去",
+      "pinyin": "tiao2",
+      "why": "「调回去」单独看更像 diào（把东西调回来）。加「整」把读音钉住，语义不变。"
+    },
+    {
+      "id": "w2-p12-tiaoguize",
+      "tier": 1,
+      "speech": false,
+      "page": 12,
+      "appears": ["page"],
+      "before": "先调规则范围",
+      "after": "先调整规则范围",
+      "pinyin": "tiao2",
+      "why": "**用户原始清单里没有这一处，是扫描发现的。** 但这句话只在页面上、notes 里没有，不进配音，所以不替换（改了也白改）；记在这里是为了将来若把它念出来时有据可查。"
+    }
+  ],
+  "scan": {
+    "total_char_occurrences": 6,
+    "distinct_sentences": 4,
+    "in_speech": 3,
+    "all_pinyin": "tiao2",
+    "none_is_diao": true,
+    "method": "python-pptx 遍历 16 页的 shape 文本与 notes 文本，逐字命中「调」，取前后 14 字上下文"
+  }
+}

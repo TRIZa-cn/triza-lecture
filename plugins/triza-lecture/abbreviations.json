@@ -1,0 +1,132 @@
+{
+  "deck": "第02讲_底稿_文字已定稿_无音频.pptx",
+  "note": "只处理 notes（会被念出来）。页面上的 P09 · 这类是排版标记，不进配音。中文音译档已弃用（作者否决 特瑞兹/吹兹/萃智）。",
+  "policy": {
+    "translit_rejected": true,
+    "reason": "作者明确不使用中文译名；TRIZ/TRIZa 保留英文听感，用 respelling 或汉字逼近",
+    "tiers": ["改写中文（页码/编号类）", "英文 respelling（术语类）"]
+  },
+  "scan": {
+    "method": "zipfile 直读 slide/notesSlide XML，取 <a:t> 全部文本，正则 TRIZa|TRIZ|P\\d{2}|[A-Z][A-Z0-9]{1,7}",
+    "in_notes_total": 5,
+    "kinds": ["TRIZ", "TRIZa", "WAF", "页码标记", "F1"]
+  },
+  "entries": [
+    {
+      "id": "abbr-triz",
+      "kind": "abbr",
+      "speech": true,
+      "before": "TRIZ",
+      "after": "trees",
+      "ipa": "/triːz/",
+      "status": "confirmed",
+      "source": "作者指定：TRIZ 读 treez；不使用中文译名",
+      "alt_note": "V3 实际采用 tree字（汉字逼近，已试听）；本表默认 trees，二者择一试听定稿",
+      "note": "notes 里 3 处（P1「不要提 TRIZ」、P6「在 TRIZ 里」等）；页面上 15 处不进配音。"
+    },
+    {
+      "id": "abbr-triza",
+      "kind": "abbr",
+      "speech": true,
+      "before": "TRIZa",
+      "after": "treeza",
+      "ipa": "/ˈtriːzə/",
+      "status": "confirmed",
+      "source": "作者指定：TRIZa 读 treeza；不使用中文译名",
+      "alt_note": "V3 实际采用 吹咋（汉字逼近，已试听）",
+      "note": "4 处，集中在 P13。注意与 TRIZ 分开——读音不同，不能共用一条规则。"
+    },
+    {
+      "id": "abbr-waf",
+      "kind": "abbr",
+      "speech": true,
+      "before": "WAF",
+      "after": "W-A-F",
+      "ipa": "/ˌdʌbəljuː eɪ ˈef/",
+      "status": "pending",
+      "source": "未确认：需作者定逐字母、waff、还是改中文",
+      "alt_note": "V3 实际采用 哇夫（已试听）",
+      "note": "3 处（P7×2、P12）。P12 讲稿自己解释过一次「WAF，也就是网页应用防火墙」。"
+    },
+    {
+      "id": "abbr-page-P03",
+      "kind": "page",
+      "speech": true,
+      "before": "P03",
+      "after": "第 3 页",
+      "status": "recommend",
+      "source": "建议：页码标记改写成中文",
+      "note": "1 处，P3「这一页是 P03 的揭晓」。"
+    },
+    {
+      "id": "abbr-page-P06",
+      "kind": "page",
+      "speech": true,
+      "before": "P06",
+      "after": "第 6 页",
+      "status": "recommend",
+      "source": "建议：页码标记改写成中文",
+      "note": "3 处（P4「翻回 P06」、P6、P10）。这是全片最容易读错的一类。"
+    },
+    {
+      "id": "abbr-page-P07",
+      "kind": "page",
+      "speech": true,
+      "before": "P07",
+      "after": "第 7 页",
+      "status": "recommend",
+      "source": "建议：页码标记改写成中文",
+      "note": "3 处（P5、P7、P12）。"
+    },
+    {
+      "id": "abbr-page-P08",
+      "kind": "page",
+      "speech": true,
+      "before": "P08",
+      "after": "第 8 页",
+      "status": "recommend",
+      "source": "建议：页码标记改写成中文",
+      "note": "3 处（P3、P8、P11）。"
+    },
+    {
+      "id": "abbr-page-P12",
+      "kind": "page",
+      "speech": true,
+      "before": "P12",
+      "after": "第 12 页",
+      "status": "recommend",
+      "source": "建议：页码标记改写成中文",
+      "note": "1 处，P7「那是 P12」。"
+    },
+    {
+      "id": "abbr-page-P13",
+      "kind": "page",
+      "speech": true,
+      "before": "P13",
+      "after": "第 13 页",
+      "status": "recommend",
+      "source": "建议：页码标记改写成中文",
+      "note": "1 处，P9。"
+    },
+    {
+      "id": "abbr-page-P15",
+      "kind": "page",
+      "speech": true,
+      "before": "P15",
+      "after": "第 15 页",
+      "status": "recommend",
+      "source": "建议：页码标记改写成中文",
+      "note": "1 处，P3「P15 回收」。"
+    },
+    {
+      "id": "abbr-f1",
+      "kind": "figure",
+      "speech": true,
+      "before": "交接文档 F1",
+      "after": "交接文档第一张",
+      "status": "recommend",
+      "source": "建议：图号改写成中文",
+      "note": "1 处，P8「配图见交接文档 F1」。"
+    }
+  ]
+}

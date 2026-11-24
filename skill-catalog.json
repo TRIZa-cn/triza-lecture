@@ -1,6 +1,7 @@
 {
   "plugin": "triza-lecture",
   "skills": [
+    "lecture-humanizer",
     "canvas-design",
     "hyperframes",
     "ppt-master",

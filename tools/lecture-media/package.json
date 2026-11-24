@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@ffprobe-installer/win32-x64": "5.1.0",
+    "gsap": "3.15.1",
+    "hyperframes": "0.9.88"
+  }
+}
